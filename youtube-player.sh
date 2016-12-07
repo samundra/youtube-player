@@ -4,6 +4,9 @@
 # Date: 2016-12-08 01:45:34 AM
 # 
 # Use `screen` to play it in the background, fork screen process and exit, enjoy
+#
+# Usage: ./youtube-player.sh 'https://www.youtube.com/watch?v=WsptdUFthWI&list=PLwpFrtWg2EJFsZK90YBdU1PNei0Hfo0lb'
+#
 
 set -e
 
