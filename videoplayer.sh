@@ -5,13 +5,21 @@
 # 
 # Use `screen` to play it in the background, fork screen process and exit, enjoy
 #
-# Usage: ./youtube-player.sh 'https://www.youtube.com/watch?v=WsptdUFthWI&list=PLwpFrtWg2EJFsZK90YBdU1PNei0Hfo0lb'
+# DEPENDENCIES
+#   - sudo apt install jq mplayer youtube-dl
+#   - chmod +x videoplayer.sh
 #
+# Usage: ./videoplayer.sh 'youtube-playlist-link-here-between-quotes'
+#
+# TODO
+# 1. Show the title of the currently playing video
+#
+
 
 set -e
 
-FILENAME='/home/samundra/video-list-1.txt'
-VIDEOLOG='/home/samundra/video-log-1.txt'
+FILENAME="/home/$USER/video-list.txt"
+VIDEOLOG="/home/$USER/video-log.txt"
 
 echo >> $FILENAME;
 echo >> $VIDEOLOG;
@@ -48,3 +56,4 @@ do
 done
 
 echo 'Playlist Completed';
+
