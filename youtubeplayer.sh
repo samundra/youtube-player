@@ -1,28 +1,28 @@
 #!/bin/bash
-# 
+# Play and download the youtube video simultaneously
 # Author: Samunddra
-# Date: 2016-12-08 01:45:34 AM
+# Update Date: 2016-12-14 16:29:14 PM
 # 
 # Use `screen` to play it in the background, fork screen process and exit, enjoy
 #
 # DEPENDENCIES
-#   - sudo apt install jq mplayer youtube-dl
-#   - chmod +x videoplayer.sh
+#   - sudo apt install -y jq mplayer youtube-dl
 #
-# Usage: ./videoplayer.sh 'youtube-playlist-link-here-between-quotes'
+# Usage: ./videoplayer.sh 'youtube-playlist-link'
 #
 # TODO
 # 1. Show the title of the currently playing video
 #
-
-
 set -e
 
 FILENAME="/home/$USER/video-list.txt"
 VIDEOLOG="/home/$USER/video-log.txt"
 
+# Create unique timestamp that will be added to video filename
+SUFFIX=`date | cut -d " " -f4|sed 's/:/_/g'`
+
 echo >> $FILENAME;
-echo >> $VIDEOLOG;
+echo "Requested URL: $1" >> $VIDEOLOG;
 
 # https://zhimingwang.org/blog/2014-11-05-list-youtube-playlist-with-youtube-dl.html
 youtube-dl -j --flat-playlist "$1"| jq -r '.id' | \
@@ -49,11 +49,14 @@ do
         -i /usr/share/pixmaps/linssid-start.png \
         -t 10000
 
-    youtube-dl -o - "$url"|mplayer -vo xv -noborder -ontop -vf scale=320:240 \
+    youtube-dl -o - "$url"| tee "video_$SUFFIX.webm"| mplayer -vo xv -noborder -ontop -vf scale=320:240 \
     -geometry 2%:98% -screenw 240 -screenh 320 -quiet -
 
     (( i = i + 1))
 done
 
-echo 'Playlist Completed';
+notify-send "Playlist Completed" \
+    "End of the playlist reached." \
+    -i /usr/share/pixmaps/linssid-start.png \
+    -t 0
 
