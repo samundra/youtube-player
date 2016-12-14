@@ -15,10 +15,13 @@
 #
 set -e
 
-FILENAME="/home/$USER/video-list.txt"
-VIDEOLOG="/home/$USER/video-log.txt"
+APPLICATION_HOME="/home/$USER/ytplayer"
 
-# Create unique timestamp that will be added to video filename
+# Create Application home if it do not exists
+[ ! -d "$APPLICATION_HOME" ] && mkdir -p $APPLICATION_HOME
+
+FILENAME="$APPLICATION_HOME/video-list.txt"
+VIDEOLOG="$APPLICATION_HOME/video-log.txt"
 SUFFIX=`date | cut -d " " -f4|sed 's/:/_/g'`
 
 echo >> $FILENAME;
@@ -49,8 +52,9 @@ do
         -i /usr/share/pixmaps/linssid-start.png \
         -t 10000
 
-    youtube-dl -o - "$url"| tee "video_$SUFFIX.webm"| mplayer -vo xv -noborder -ontop -vf scale=320:240 \
-    -geometry 2%:98% -screenw 240 -screenh 320 -quiet -
+    youtube-dl -o - "$url"| tee "$APPLICATION_HOME/video_${SUFFIX}_$i.webm"| \
+        mplayer -vo xv -noborder -ontop -vf scale=320:240 \
+        -geometry 2%:98% -screenw 240 -screenh 320 -quiet -
 
     (( i = i + 1))
 done
@@ -59,4 +63,3 @@ notify-send "Playlist Completed" \
     "End of the playlist reached." \
     -i /usr/share/pixmaps/linssid-start.png \
     -t 0
-
