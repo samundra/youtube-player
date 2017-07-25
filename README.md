@@ -90,10 +90,17 @@ Opening audio decoder: [ffmpeg] FFmpeg/libavcodec audio decoders
 AUDIO: 44100 Hz, 2 ch, floatle, 96.0 kbit/3.40% (ratio: 12002->352800)
 Selected audio codec: [ffaac] afm: ffmpeg (FFmpeg AAC (MPEG-2/MPEG-4 Audio))
 ==========================================================================
-
+...
+...
+... will keep going on while video is still playing
 ```
 
 Sit back and enjoy the video.
+
+### How to quit currently playing video?
+- There are two ways you can exit the current video.
+1. Click on the currently playing video window then hit ```q``` OR
+2. Terminate the script by hitting ```Ctrl + C``` on the terminal where it was executed.
 
 ### TIPS AND TRICKS
 - The video window is mplayer window. That means, you can click on it and
@@ -116,5 +123,7 @@ steals focus to itself, which is annoying when we are focused on doing other tas
 ### CONTRIBUTIONS
 - Please feel free to ```fork it``` make changes to your heart's content when you
 are happy send a PR to this repository.
+- Please send PR against `develop` branch. The `master` branch will always remain
+stable and safe to use.
 - It's a bash script, so there's no specific guidelines other than the bash script
 guidlines.
