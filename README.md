@@ -1,9 +1,9 @@
 ### Borderless Youtube Player
 
 Use `screen` to play it in the background
-- fork screen process and detach it and enjoy the borderless video
-- OR run the videoplayer and keep the terminal window open
-- let it play and monitor the progress :)
+- Fork screen process and detach it and enjoy the borderless video
+- OR run the video player and keep the terminal window open
+- Let it play and monitor the progress :)
 
 #### SCREENSHOT
 ![Youtube Player](https://user-images.githubusercontent.com/760855/28559384-835384c8-7140-11e7-8b37-056d84403301.png)
@@ -24,7 +24,7 @@ settings. After I found the settings that worked for me, the remaining
 thing was to pull the videos from youtube and play it in the desktop :)
 
 ### DEPENDENCIES
-| application | usuage                                                               |
+| application | usage                                                               |
 |-------------|----------------------------------------------------------------------|
 | youtube-dl  | downloads the youtube videos and lets you stream directly from stdin |
 | mplayer     | play the borderless video                                            |
@@ -126,4 +126,4 @@ are happy send a PR to this repository.
 - Please send PR against `develop` branch. The `master` branch will always remain
 stable and safe to use.
 - It's a bash script, so there's no specific guidelines other than the bash script
-guidlines.
+guidelines.
